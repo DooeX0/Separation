@@ -1,0 +1,247 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #111113;
+  --surface: #1a1a1d;
+  --surface2: #1f1f22;
+  --border: #2a2a2e;
+  --border-glow: #35304a;
+  --accent: #4a2d99;
+  --accent-dim: #2d1a66;
+  --accent-glow: rgba(74, 45, 153, 0.18);
+  --text: #d4d4d8;
+  --text-dim: #52525b;
+  --text-mid: #a1a1aa;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "JetBrains Mono", monospace;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.tabs {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
+  padding: 0 4px;
+  gap: 2px;
+}
+
+.tab {
+  padding: 14px 32px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  color: var(--text-dim);
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+  user-select: none;
+  position: relative;
+}
+.tab:hover {
+  color: var(--text-mid);
+}
+.tab.active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+.workspace {
+  flex: 1;
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+.workspace.active {
+  display: grid;
+}
+@media (max-width: 600px) {
+  .workspace.active {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.pane:first-child {
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+}
+.pane:last-child {
+  background: var(--surface);
+}
+
+.pane:first-child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-dim),
+    transparent
+  );
+  opacity: 0.5;
+}
+
+textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 28px;
+  color: var(--text);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  caret-color: var(--accent);
+  white-space: pre;
+  overflow: auto;
+  overflow-wrap: normal;
+}
+textarea::selection {
+  background: var(--accent-glow);
+}
+
+.output {
+  flex: 1;
+  padding: 28px 28px 60px;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  white-space: pre;
+  overflow: auto;
+  color: var(--text-mid);
+  user-select: text;
+  cursor: default;
+}
+
+.copy-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  background: var(--surface2);
+  border: 1px solid var(--border-glow);
+  border-radius: 10px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.copy-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+.copy-btn:active {
+  transform: scale(0.92);
+}
+
+.copy-icon {
+  position: relative;
+  width: 14px;
+  height: 16px;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+.copy-icon::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 12px;
+  border: 1.5px solid currentColor;
+  border-radius: 2px;
+  bottom: 0;
+  left: 0;
+  background: var(--surface2);
+}
+.copy-icon::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 12px;
+  border: 1.5px solid currentColor;
+  border-radius: 2px;
+  top: 0;
+  right: 0;
+  background: var(--surface2);
+}
+.copy-btn:hover .copy-icon::before,
+.copy-btn:hover .copy-icon::after {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-glow);
+  border-radius: 10px;
+  cursor: grab;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+  cursor: grab;
+}
+::-webkit-scrollbar-thumb:active {
+  cursor: grabbing;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background: var(--accent);
+  color: white;
+  padding: 9px 24px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transition: all 0.25s;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 4px 24px var(--accent-glow);
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
