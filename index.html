@@ -1,459 +1,394 @@
 <!doctype html>
-
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <title>Separation</title>
-
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%231a1a1d'/%3E%3Cstop offset='100%25' stop-color='%23111113'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%237c4dff'/%3E%3Cstop offset='100%25' stop-color='%234a2d99'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='7' fill='url(%23a)'/%3E%3Crect width='32' height='32' rx='7' fill='none' stroke='%2335304a' stroke-width='1'/%3E%3Crect x='5' y='8' width='9' height='3' rx='1.5' fill='%234a2d99'/%3E%3Crect x='5' y='13' width='9' height='2' rx='1' fill='%2335304a'/%3E%3Crect x='5' y='17' width='7' height='2' rx='1' fill='%2335304a'/%3E%3Crect x='5' y='21' width='8' height='2' rx='1' fill='%2335304a'/%3E%3Cline x1='16' y1='6' x2='16' y2='26' stroke='url(%23b)' stroke-width='1' stroke-linecap='round'/%3E%3Crect x='18' y='8' width='9' height='3' rx='1.5' fill='url(%23b)'/%3E%3Crect x='18' y='13' width='9' height='2' rx='1' fill='%2352525b'/%3E%3Crect x='18' y='17' width='7' height='2' rx='1' fill='%2352525b'/%3E%3Crect x='18' y='21' width='8' height='2' rx='1' fill='%2352525b'/%3E%3C/svg%3E"
-    />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%231a1a1d'/%3E%3Cstop offset='100%25' stop-color='%23111113'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%237c4dff'/%3E%3Cstop offset='100%25' stop-color='%234a2d99'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='7' fill='url(%23a)'/%3E%3Crect width='32' height='32' rx='7' fill='none' stroke='%2335304a' stroke-width='1'/%3E%3Crect x='5' y='8' width='9' height='3' rx='1.5' fill='%234a2d99'/%3E%3Crect x='5' y='13' width='9' height='2' rx='1' fill='%2335304a'/%3E%3Crect x='5' y='17' width='7' height='2' rx='1' fill='%2335304a'/%3E%3Crect x='5' y='21' width='8' height='2' rx='1' fill='%2335304a'/%3E%3Cline x1='16' y1='6' x2='16' y2='26' stroke='url(%23b)' stroke-width='1' stroke-linecap='round'/%3E%3Crect x='18' y='8' width='9' height='3' rx='1.5' fill='url(%23b)'/%3E%3Crect x='18' y='13' width='9' height='2' rx='1' fill='%2352525b'/%3E%3Crect x='18' y='17' width='7' height='2' rx='1' fill='%2352525b'/%3E%3Crect x='18' y='21' width='8' height='2' rx='1' fill='%2352525b'/%3E%3C/svg%3E" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
     <style>
-      *,
-      *::before,
-      *::after {
+      *, *::before, *::after {
         box-sizing: border-box;
-
         margin: 0;
-
         padding: 0;
       }
 
       :root {
-        --bg: #111113;
-
-        --surface: #1a1a1d;
-
-        --surface2: #1f1f22;
-
-        --border: #2a2a2e;
-
-        --border-glow: #35304a;
-
-        --accent: #4a2d99;
-
-        --accent-dim: #2d1a66;
-
-        --accent-glow: rgba(74, 45, 153, 0.18);
-
-        --text: #d4d4d8;
-
-        --text-dim: #52525b;
-
-        --text-mid: #a1a1aa;
+        --bg: #0c0c0e;
+        --surface: #131316;
+        --surface2: #1a1a1f;
+        --surface3: #202026;
+        --border: #2a2a32;
+        --border-glow: #3d3556;
+        --accent: #6c3fff;
+        --accent-dim: #3a1f99;
+        --accent-glow: rgba(108, 63, 255, 0.22);
+        --accent-soft: rgba(108, 63, 255, 0.08);
+        --text: #e4e4ea;
+        --text-dim: #4a4a58;
+        --text-mid: #9090a8;
+        --input-bg: #0f0f12;
+        --input-border: #2e2a42;
+        --output-bg: #101014;
+        --output-border: #1e1b2e;
+        --label-input: #6c5a9e;
+        --label-output: #3d8a6e;
       }
 
       body {
         background: var(--bg);
-
         color: var(--text);
-
         font-family: "JetBrains Mono", monospace;
-
         display: flex;
-
         flex-direction: column;
-
         height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
       }
 
       /* ── TABS ── */
-
       .tabs {
         display: flex;
-
         align-items: stretch;
-
-        border-bottom: 1px solid var(--border);
-
+        border-bottom: 1px solid var(--border-glow);
         background: var(--surface);
-
         flex-shrink: 0;
-
-        padding: 0 4px;
-
+        padding: 0 8px;
         gap: 2px;
       }
 
       .tab {
         padding: 14px 32px;
-
         font-size: 0.7rem;
-
         font-weight: 700;
-
         text-transform: uppercase;
-
         letter-spacing: 0.12em;
-
         cursor: pointer;
-
         color: var(--text-dim);
-
         border-bottom: 2px solid transparent;
-
-        transition:
-          color 0.2s,
-          border-color 0.2s;
-
+        transition: color 0.2s, border-color 0.2s;
         user-select: none;
-
-        position: relative;
+        -webkit-tap-highlight-color: transparent;
       }
 
-      .tab:hover {
-        color: var(--text-mid);
-      }
+      .tab:hover { color: var(--text-mid); }
 
       .tab.active {
         color: var(--text);
-
-        border-bottom-color: var(--accent);
+        border-bottom-color: var(--border-glow);
       }
 
       /* ── WORKSPACE ── */
-
       .workspace {
         flex: 1;
-
         display: none;
-
-        grid-template-columns: 1fr 1fr;
-
         overflow: hidden;
+        padding: 20px;
+        gap: 12px;
+        grid-template-columns: 1fr 1fr;
       }
 
       .workspace.active {
         display: grid;
       }
 
-      @media (max-width: 600px) {
+      @media (max-width: 700px) {
+        .tabs {
+          padding: 0 4px;
+        }
+        .tab {
+          flex: 1;
+          text-align: center;
+          padding: 13px 16px;
+          font-size: 0.68rem;
+          letter-spacing: 0.08em;
+        }
+        .workspace {
+          padding: 10px;
+          gap: 10px;
+        }
         .workspace.active {
           grid-template-columns: 1fr;
-
           grid-template-rows: 1fr 1fr;
+        }
+        textarea {
+          font-size: 1rem; /* prevent iOS zoom on focus */
+          padding: 14px 14px;
+        }
+        .output {
+          font-size: 1rem;
+          padding: 14px 14px 56px;
+        }
+        .pane-label {
+          padding: 8px 14px 7px;
+        }
+        .pane {
+          border-radius: 10px;
+        }
+        .copy-btn {
+          bottom: 10px;
+          right: 10px;
+          width: 38px;
+          height: 38px;
+          border-radius: 10px;
+        }
+        .toast {
+          bottom: 16px;
+          font-size: 0.7rem;
+          padding: 8px 20px;
         }
       }
 
+      /* ── PANE ── */
       .pane {
         display: flex;
-
         flex-direction: column;
-
         position: relative;
-
         overflow: hidden;
+        border-radius: 12px;
+        border: 1px solid var(--input-border);
+        background: var(--input-bg);
+        box-shadow:
+          0 0 0 1px rgba(108, 63, 255, 0.06),
+          inset 0 1px 0 rgba(255, 255, 255, 0.03),
+          0 4px 24px rgba(0, 0, 0, 0.4);
+        transition: border-color 0.2s, box-shadow 0.2s;
       }
 
-      .pane:first-child {
-        border-right: 1px solid var(--border);
-
-        background: var(--surface);
+      .pane:focus-within {
+        border-color: rgba(108, 63, 255, 0.35);
+        box-shadow:
+          0 0 0 1px rgba(108, 63, 255, 0.07),
+          inset 0 1px 0 rgba(255, 255, 255, 0.03),
+          0 4px 24px rgba(0, 0, 0, 0.45);
       }
 
-      .pane:last-child {
-        background: var(--surface);
+      .pane.output-pane {
+        border-color: var(--output-border);
+        background: var(--output-bg);
+        box-shadow:
+          0 0 0 1px rgba(61, 138, 110, 0.06),
+          inset 0 1px 0 rgba(255, 255, 255, 0.02),
+          0 4px 24px rgba(0, 0, 0, 0.4);
       }
 
-      /* subtle top line accent on left pane */
-
-      .pane:first-child::before {
-        content: "";
-
-        position: absolute;
-
-        top: 0;
-
-        left: 0;
-
-        right: 0;
-
-        height: 1px;
-
-        background: linear-gradient(
-          90deg,
-          transparent,
-          var(--accent-dim),
-          transparent
-        );
-
-        opacity: 0.5;
+      /* ── PANE LABEL ── */
+      .pane-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px 8px;
+        border-bottom: 1px solid rgba(255,255,255,0.04);
+        flex-shrink: 0;
       }
 
+      .pane-label-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--label-input);
+        box-shadow: 0 0 6px var(--label-input);
+        flex-shrink: 0;
+      }
+
+      .output-pane .pane-label-dot {
+        background: var(--label-output);
+        box-shadow: 0 0 6px var(--label-output);
+      }
+
+      .pane-label-text {
+        font-size: 0.62rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--label-input);
+      }
+
+      .output-pane .pane-label-text {
+        color: var(--label-output);
+      }
+
+      /* ── TEXTAREA ── */
       textarea {
         flex: 1;
-
         background: transparent;
-
         border: none;
-
         outline: none;
-
         resize: none;
-
-        padding: 28px;
-
+        padding: 18px 20px;
         color: var(--text);
-
         font-family: "JetBrains Mono", monospace;
-
-        font-size: 0.95rem;
-
-        line-height: 1.9;
-
+        font-size: 0.9rem;
+        line-height: 1.85;
         caret-color: var(--accent);
-
         white-space: pre;
-
         overflow: auto;
-
         overflow-wrap: normal;
       }
 
-      textarea::selection {
-        background: var(--accent-glow);
+      textarea::placeholder {
+        color: var(--text-dim);
       }
 
+      ::selection {
+        background: highlight;
+        color: highlighttext;
+      }
+
+      /* ── OUTPUT ── */
       .output {
         flex: 1;
-
-        padding: 28px 28px 60px;
-
-        font-size: 0.95rem;
-
-        line-height: 1.9;
-
+        padding: 18px 20px 60px;
+        font-size: 0.9rem;
+        line-height: 1.85;
         white-space: pre;
-
         overflow: auto;
-
         color: var(--text-mid);
-
         user-select: text;
-
         cursor: default;
       }
 
-      /* ── COPY BUTTON ── */
+      .output:empty::before {
+        content: "результат появится здесь...";
+        color: var(--text-dim);
+        font-style: normal;
+      }
 
+      /* ── COPY BUTTON ── */
       .copy-btn {
         position: absolute;
-
-        bottom: 16px;
-
-        right: 16px;
-
-        width: 36px;
-
-        height: 36px;
-
+        bottom: 14px;
+        right: 14px;
+        width: 34px;
+        height: 34px;
         background: var(--surface2);
-
         border: 1px solid var(--border-glow);
-
-        border-radius: 10px;
-
+        border-radius: 9px;
         color: var(--text-dim);
-
         cursor: pointer;
-
         transition: all 0.2s;
-
         display: flex;
-
         align-items: center;
-
         justify-content: center;
-
-        box-shadow: 0 0 0 0 var(--accent-glow);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       }
 
       .copy-btn:hover {
         color: var(--text);
-
         border-color: var(--accent);
-
-        background: var(--surface);
-
-        box-shadow:
-          0 0 12px var(--accent-glow),
-          inset 0 0 8px rgba(124, 77, 255, 0.08);
+        background: var(--surface3);
+        box-shadow: 0 0 14px var(--accent-glow), inset 0 0 8px rgba(108, 63, 255, 0.06);
       }
 
-      .copy-btn:active {
-        transform: scale(0.92);
-      }
+      .copy-btn:active { transform: scale(0.92); }
 
       .copy-icon {
         position: relative;
-
         width: 14px;
-
         height: 16px;
-
         pointer-events: none;
-
         flex-shrink: 0;
       }
 
       .copy-icon::before {
         content: "";
-
         position: absolute;
-
         width: 10px;
-
         height: 12px;
-
         border: 1.5px solid currentColor;
-
         border-radius: 2px;
-
         bottom: 0;
-
         left: 0;
-
         background: var(--surface2);
       }
 
       .copy-icon::after {
         content: "";
-
         position: absolute;
-
         width: 10px;
-
         height: 12px;
-
         border: 1.5px solid currentColor;
-
         border-radius: 2px;
-
         top: 0;
-
         right: 0;
-
         background: var(--surface2);
       }
 
-      .copy-btn:hover .copy-icon::before {
-        background: var(--surface);
-      }
-
+      .copy-btn:hover .copy-icon::before,
       .copy-btn:hover .copy-icon::after {
-        background: var(--surface);
-      }
-
-      /* ── DIVIDER ── */
-
-      .divider {
-        position: absolute;
-
-        top: 20px;
-
-        bottom: 20px;
-
-        left: 50%;
-
-        width: 1px;
-
-        background: linear-gradient(
-          180deg,
-          transparent,
-          var(--border-glow),
-          transparent
-        );
-
-        pointer-events: none;
-
-        z-index: 1;
+        background: var(--surface3);
       }
 
       /* ── SCROLLBARS ── */
-
-      ::-webkit-scrollbar {
-        width: 0px;
-
-        height: 5px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: var(--border-glow);
-
-        border-radius: 10px;
-
-        cursor: grab;
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background: var(--accent);
-
-        cursor: grab;
-      }
-
-      ::-webkit-scrollbar-thumb:active {
-        cursor: grabbing;
-      }
-
-      ::-webkit-scrollbar-corner {
-        background: transparent;
-      }
+      ::-webkit-scrollbar { width: 0px; height: 5px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: var(--border-glow); border-radius: 10px; cursor: grab; }
+      ::-webkit-scrollbar-thumb:hover { background: var(--accent); cursor: grab; }
+      ::-webkit-scrollbar-thumb:active { cursor: grabbing; }
+      ::-webkit-scrollbar-corner { background: transparent; }
 
       /* ── TOAST ── */
-
       .toast {
         position: fixed;
-
         bottom: 28px;
-
         left: 50%;
-
         transform: translateX(-50%) translateY(12px);
-
         background: var(--accent);
-
         color: white;
-
         padding: 9px 24px;
-
         border-radius: 100px;
-
         font-size: 0.72rem;
-
         font-weight: 700;
-
         letter-spacing: 0.08em;
-
         opacity: 0;
-
         transition: all 0.25s;
-
         pointer-events: none;
-
         z-index: 100;
-
         box-shadow: 0 4px 24px var(--accent-glow);
       }
 
       .toast.show {
         opacity: 1;
-
         transform: translateX(-50%) translateY(0);
+      }
+
+      /* ── ARROW BETWEEN PANES ── */
+      .arrow-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 0;
+        position: relative;
+      }
+
+      .arrow-divider-inner {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 28px;
+        height: 28px;
+        background: var(--surface2);
+        border: 1px solid var(--border-glow);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-dim);
+        z-index: 2;
+        box-shadow: 0 0 12px rgba(0,0,0,0.5);
+      }
+
+      .arrow-divider-inner svg {
+        width: 12px;
+        height: 12px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
       }
     </style>
   </head>
@@ -461,27 +396,29 @@
   <body>
     <div class="tabs">
       <div class="tab active" onclick="switchTab('split')">Разделение</div>
-
       <div class="tab" onclick="switchTab('compress')">Сжатие</div>
     </div>
 
     <!-- TAB: Разделение -->
-
     <div class="workspace active" id="tab-split">
       <div class="pane">
+        <div class="pane-label">
+          <span class="pane-label-dot"></span>
+          <span class="pane-label-text">Ввод</span>
+        </div>
         <textarea
           id="split-input"
-          oninput="
-            processSplit();
-
-            save();
-          "
+          placeholder="Вставьте текст для обработки..."
+          oninput="processSplit(); save();"
         ></textarea>
       </div>
 
-      <div class="pane">
+      <div class="pane output-pane">
+        <div class="pane-label">
+          <span class="pane-label-dot"></span>
+          <span class="pane-label-text">Результат</span>
+        </div>
         <div class="output" id="split-output"></div>
-
         <button class="copy-btn" onclick="copyOutput('split-output')">
           <span class="copy-icon"></span>
         </button>
@@ -489,22 +426,25 @@
     </div>
 
     <!-- TAB: Сжатие -->
-
     <div class="workspace" id="tab-compress">
       <div class="pane">
+        <div class="pane-label">
+          <span class="pane-label-dot"></span>
+          <span class="pane-label-text">Ввод</span>
+        </div>
         <textarea
           id="compress-input"
-          oninput="
-            processCompress();
-
-            save();
-          "
+          placeholder="Вставьте данные для сжатия..."
+          oninput="processCompress(); save();"
         ></textarea>
       </div>
 
-      <div class="pane">
+      <div class="pane output-pane">
+        <div class="pane-label">
+          <span class="pane-label-dot"></span>
+          <span class="pane-label-text">Результат</span>
+        </div>
         <div class="output" id="compress-output"></div>
-
         <button class="copy-btn" onclick="copyOutput('compress-output')">
           <span class="copy-icon"></span>
         </button>
@@ -518,151 +458,71 @@
 
       function switchTab(tab) {
         activeTab = tab;
-
         document.querySelectorAll(".tab").forEach((t, i) => {
-          t.classList.toggle(
-            "active",
-
-            (i === 0 && tab === "split") || (i === 1 && tab === "compress"),
-          );
+          t.classList.toggle("active", (i === 0 && tab === "split") || (i === 1 && tab === "compress"));
         });
-
-        document
-
-          .getElementById("tab-split")
-
-          .classList.toggle("active", tab === "split");
-
-        document
-
-          .getElementById("tab-compress")
-
-          .classList.toggle("active", tab === "compress");
-
+        document.getElementById("tab-split").classList.toggle("active", tab === "split");
+        document.getElementById("tab-compress").classList.toggle("active", tab === "compress");
         localStorage.setItem("activeTab", tab);
       }
 
       function processSplit() {
         const input = document.getElementById("split-input").value;
-
-        const result = input
-
-          .split("\n")
-
-          .map((line) => {
-            if (!line.trim()) return "";
-
-            let l = line.replace(
-              /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{5})(?=\d)/g,
-
-              "$1 ",
-            );
-
-            l = l.replace(/(?<!\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):/g, " ");
-
-            l = l
-
-              .replace(/[;|,\t]+/g, " ")
-
-              .replace(/ +/g, " ")
-
-              .trim();
-
-            return l;
-          })
-
-          .join("\n");
-
+        const result = input.split("\n").map((line) => {
+          if (!line.trim()) return "";
+          let l = line.replace(/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{5})(?=\d)/g, "$1 ");
+          l = l.replace(/(?<!\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):/g, " ");
+          l = l.replace(/[;|,\t]+/g, " ").replace(/ +/g, " ").trim();
+          return l;
+        }).join("\n");
         document.getElementById("split-output").textContent = result;
       }
 
       function detectType(line) {
         if (/@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/.test(line)) return "proxy";
-
         if (/^\d{4}/.test(line)) return "card";
-
         return "email";
       }
 
       function processCompress() {
         const input = document.getElementById("compress-input").value;
-
-        const lines = input
-
-          .split("\n")
-
-          .map((l) => l.trim())
-
-          .filter(Boolean);
-
+        const lines = input.split("\n").map((l) => l.trim()).filter(Boolean);
         const emails = lines.filter((l) => detectType(l) === "email");
-
         const proxies = lines.filter((l) => detectType(l) === "proxy");
-
         const cards = lines.filter((l) => detectType(l) === "card");
-
         const count = Math.max(emails.length, proxies.length, cards.length);
-
         const out = [];
-
         for (let i = 0; i < count; i++) {
           let row = "";
-
           if (emails[i]) row += emails[i];
-
           if (proxies[i]) row += proxies[i];
-
           if (cards[i]) row += (row ? " " : "") + cards[i];
-
           if (row) out.push(row);
         }
-
         document.getElementById("compress-output").textContent = out.join("\n");
       }
 
       function copyOutput(id) {
-        navigator.clipboard
-
-          .writeText(document.getElementById(id).textContent)
-
-          .then(() => {
-            const t = document.getElementById("toast");
-
-            t.classList.add("show");
-
-            setTimeout(() => t.classList.remove("show"), 1800);
-          });
+        navigator.clipboard.writeText(document.getElementById(id).textContent).then(() => {
+          const t = document.getElementById("toast");
+          t.classList.add("show");
+          setTimeout(() => t.classList.remove("show"), 1800);
+        });
       }
 
       function save() {
-        localStorage.setItem(
-          "split-input",
-
-          document.getElementById("split-input").value,
-        );
-
-        localStorage.setItem(
-          "compress-input",
-
-          document.getElementById("compress-input").value,
-        );
+        localStorage.setItem("split-input", document.getElementById("split-input").value);
+        localStorage.setItem("compress-input", document.getElementById("compress-input").value);
       }
 
       function load() {
         const si = localStorage.getItem("split-input");
-
         const ci = localStorage.getItem("compress-input");
-
         const tab = localStorage.getItem("activeTab") || "split";
-
         if (si) document.getElementById("split-input").value = si;
-
         if (ci) document.getElementById("compress-input").value = ci;
-
         switchTab(tab);
-
         processSplit();
-
         processCompress();
       }
 
